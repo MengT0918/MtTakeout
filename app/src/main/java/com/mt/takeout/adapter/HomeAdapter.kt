@@ -14,7 +14,6 @@ class HomeAdapter : RecyclerView.Adapter<HomeAdapter.HomeHolder>() {
         const val TYPE_SELLER = 1
     }
 
-
     init {
         (1..20).forEach { mDates.add("你好，Kotlin！！") }
     }
