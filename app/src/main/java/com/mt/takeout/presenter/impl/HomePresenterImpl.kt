@@ -2,16 +2,16 @@ package com.mt.takeout.presenter.impl
 
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.mt.takeout.base.BasePresenterImpl
+import com.mt.takeout.base.BaseNetPresenterImpl
 import com.mt.takeout.model.bean.HomeSeller
 import com.mt.takeout.presenter.interf.HomePresenter
 import com.mt.takeout.utils.ThreadUtil
 import com.mt.takeout.view.HomeView
 import org.json.JSONObject
 
-class HomePresenterImpl(var homeView: HomeView) : HomePresenter, BasePresenterImpl() {
+class HomePresenterImpl(var homeView: HomeView) : HomePresenter, BaseNetPresenterImpl() {
     override fun loadData() {
-        val homeCall = mHomeService.getHomeInfo()
+        val homeCall = mTakeoutService.getHomeInfo()
         homeCall.enqueue(callback)
     }
 

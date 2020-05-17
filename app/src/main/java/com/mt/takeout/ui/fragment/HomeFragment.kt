@@ -53,7 +53,7 @@ class HomeFragment : BaseFragment(), HomeView {
 
     override fun onError(msg: String) {
         toast(msg)
-    }
+}
 
     override fun onSuccess(nearbyList: List<HomeSeller>?, otherList: List<HomeSeller>?) {
         mAllList.clear()

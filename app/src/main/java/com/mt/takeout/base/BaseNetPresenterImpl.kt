@@ -1,24 +1,23 @@
 package com.mt.takeout.base
 
-import com.mt.takeout.net.HomeService
+import com.mt.takeout.net.TakeoutService
 import com.mt.takeout.net.ResponseInfo
-import com.mt.takeout.utils.ThreadUtil
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-abstract class BasePresenterImpl() {
+abstract class BaseNetPresenterImpl() {
     private val HOST = "http://192.168.0.100:8080"
-    protected val mHomeService: HomeService
+    protected val mTakeoutService: TakeoutService
 
     init {
         val retrofit = Retrofit.Builder()
             .baseUrl("$HOST/TakeoutService/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-        mHomeService = retrofit.create<HomeService>(HomeService::class.java)
+        mTakeoutService = retrofit.create<TakeoutService>(TakeoutService::class.java)
     }
 
     protected val callback = object : Callback<ResponseInfo> {

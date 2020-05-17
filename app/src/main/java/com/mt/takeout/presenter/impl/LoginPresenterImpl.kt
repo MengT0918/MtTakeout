@@ -4,7 +4,7 @@ import android.util.Log
 import com.google.gson.Gson
 import com.j256.ormlite.android.AndroidDatabaseConnection
 import com.j256.ormlite.dao.Dao
-import com.mt.takeout.base.BasePresenterImpl
+import com.mt.takeout.base.BaseNetPresenterImpl
 import com.mt.takeout.model.bean.User
 import com.mt.takeout.model.dao.UserOpenHelper
 import com.mt.takeout.presenter.interf.LoginPresenter
@@ -13,12 +13,12 @@ import com.mt.takeout.utils.TakeoutApplication
 import com.mt.takeout.utils.ThreadUtil
 import java.sql.Savepoint
 
-class LoginPresenterImpl(private val loginActivity: LoginActivity) : LoginPresenter, BasePresenterImpl() {
+class LoginPresenterImpl(private val loginActivity: LoginActivity) : LoginPresenter, BaseNetPresenterImpl() {
     lateinit var connection :AndroidDatabaseConnection
     lateinit var savePoint : Savepoint
 
     override fun loginByPhone(phone: String) {
-        val loginCall = mHomeService.loginByPhone(phone)
+        val loginCall = mTakeoutService.loginByPhone(phone)
         loginCall.enqueue(callback)
     }
 

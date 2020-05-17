@@ -18,6 +18,7 @@ class HomeAdapter : RecyclerView.Adapter<HomeAdapter.HomeHolder>() {
     class HomeHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
     fun updateData(list: List<HomeSeller>) {
+        mDatas.clear()
         mDatas.addAll(list)
         notifyDataSetChanged()
     }
