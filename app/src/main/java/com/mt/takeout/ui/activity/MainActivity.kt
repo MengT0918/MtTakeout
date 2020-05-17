@@ -1,32 +1,53 @@
 package com.mt.takeout.ui.activity
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import androidx.viewpager.widget.ViewPager
 import com.mt.takeout.R
 import com.mt.takeout.adapter.FragmentAdapter
+import com.mt.takeout.base.BaseActivity
 import com.mt.takeout.ui.fragment.HomeFragment
 import com.mt.takeout.ui.fragment.MoreFragment
 import com.mt.takeout.ui.fragment.OrderFragment
 import com.mt.takeout.ui.fragment.UserFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
     private val fragments = listOf(HomeFragment(), OrderFragment(), UserFragment(), MoreFragment())
-
     private val mBottom by lazy { main_bottom }
-
     private val mViewPager by lazy { main_vp }
-
     private var mChildCount = 0
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+    override fun getLayoutId(): Int {
+        return R.layout.activity_main
+    }
 
-        initData()
-        initListener()
+    override fun initData() {
+        mChildCount = mBottom.childCount
+        mViewPager.adapter = FragmentAdapter(fragments, supportFragmentManager)
         initSelectState(0)
+    }
+
+    override fun initListener() {
+        (0 until mChildCount).forEach { index ->
+            mBottom.getChildAt(index).setOnClickListener {
+                mViewPager.currentItem = index
+                changeSelectState(index)
+            }
+        }
+        mViewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+            override fun onPageScrollStateChanged(state: Int) {
+            }
+
+            override fun onPageScrolled(
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
+            ) {
+            }
+
+            override fun onPageSelected(position: Int) {
+                changeSelectState(position)
+            }
+        })
     }
 
     //获取是否存在NavigationBar
@@ -62,35 +83,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun initSelectState(index: Int) {
         mBottom.getChildAt(0).isSelected = true
-    }
-
-    private fun initData() {
-        mChildCount = mBottom.childCount
-        mViewPager.adapter = FragmentAdapter(fragments, supportFragmentManager)
-    }
-
-    private fun initListener() {
-        (0 until mChildCount).forEach { index ->
-            mBottom.getChildAt(index).setOnClickListener {
-                mViewPager.currentItem = index
-                changeSelectState(index)
-            }
-        }
-        mViewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-            override fun onPageScrollStateChanged(state: Int) {
-            }
-
-            override fun onPageScrolled(
-                position: Int,
-                positionOffset: Float,
-                positionOffsetPixels: Int
-            ) {
-            }
-
-            override fun onPageSelected(position: Int) {
-                changeSelectState(position)
-            }
-        })
     }
 
     private fun changeSelectState(index: Int) {

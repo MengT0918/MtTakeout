@@ -3,25 +3,27 @@ package com.mt.takeout.adapter
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.mt.takeout.model.bean.HomeSeller
 import com.mt.takeout.widget.HomeSellerItemView
 import com.mt.takeout.widget.HomeTitleItemView
 
 class HomeAdapter : RecyclerView.Adapter<HomeAdapter.HomeHolder>() {
-    private val mDates = ArrayList<String>()
+    private val mDatas = ArrayList<HomeSeller>()
 
     companion object {
         const val TYPE_TITLE = 0
         const val TYPE_SELLER = 1
     }
 
-    init {
-        (1..20).forEach { mDates.add("你好，Kotlin！！") }
-    }
-
     class HomeHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
+    fun updateData(list: List<HomeSeller>) {
+        mDatas.addAll(list)
+        notifyDataSetChanged()
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeHolder {
-        return when(viewType) {
+        return when (viewType) {
             TYPE_TITLE -> HomeHolder(HomeTitleItemView(parent.context))
             TYPE_SELLER -> HomeHolder(HomeSellerItemView(parent.context))
             else -> HomeHolder(HomeTitleItemView(parent.context))
@@ -29,13 +31,13 @@ class HomeAdapter : RecyclerView.Adapter<HomeAdapter.HomeHolder>() {
     }
 
     override fun getItemCount(): Int {
-        return if (mDates.size > 0) mDates.size + 1 else 0
+        return if (mDatas.size > 0) mDatas.size + 1 else 0
     }
 
     override fun onBindViewHolder(holder: HomeHolder, position: Int) {
-        when(getItemViewType(position)) {
+        when (getItemViewType(position)) {
             TYPE_TITLE -> (holder.itemView as HomeTitleItemView).bindData()
-            TYPE_SELLER -> (holder.itemView as HomeSellerItemView).bindData()
+            TYPE_SELLER -> (holder.itemView as HomeSellerItemView).bindData(mDatas[position - 1])
         }
     }
 

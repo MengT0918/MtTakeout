@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'com.mob.sdk'
 
 android {
     compileSdkVersion 28
@@ -13,7 +14,6 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -24,6 +24,18 @@ android {
         }
     }
 
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
+}
+
+MobSDK {
+    appKey "2f49fcb3962d5"
+    appSecret "552bb3a4cd39f0f9602c8507a06e5401"
+    SMSSDK {}
 }
 
 dependencies {
@@ -38,7 +50,7 @@ dependencies {
     implementation "org.jetbrains.anko:anko:$anko_version"
     implementation 'com.roughike:bottom-bar:2.3.1'
 
-    //轮播图
+    //三方控件轮播图需要的依赖，SliderLayout
     implementation 'com.squareup.picasso:picasso:2.3.2'
     implementation 'com.nineoldandroids:library:2.4.0'
     implementation 'com.daimajia.slider:library:1.1.5@aar'
@@ -47,4 +59,12 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.2.4'
     implementation 'com.squareup.retrofit2:retrofit:2.1.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
+
+    //dagger2 注解依赖  实现View层与Presenter层的解耦
+    kapt 'com.google.dagger:dagger-compiler:2.6'
+    implementation 'com.google.dagger:dagger:2.6'
+
+    //数据库，用于存储用户登录状态，避免每次进入的时候登录
+    implementation 'com.j256.ormlite:ormlite-android:5.1'
+    implementation 'com.j256.ormlite:ormlite-core:5.1'
 }

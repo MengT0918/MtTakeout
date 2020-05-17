@@ -36,7 +36,7 @@ class HomeTitleItemView : LinearLayout {
             for ((key, value) in mUrlMaps) {
                 val textSliderView = TextSliderView(context)
                 textSliderView.description(key).image(value)
-                item_home_slider.addSlider(textSliderView)
+                item_home_title_slider.addSlider(textSliderView)
             }
         }
     }
