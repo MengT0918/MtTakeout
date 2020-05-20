@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.RelativeLayout
 import com.mt.takeout.R
 import com.mt.takeout.model.bean.Order
+import com.mt.takeout.utils.OrderObservable
 import kotlinx.android.synthetic.main.item_order.view.*
 
 class OrderItemView : RelativeLayout {
@@ -23,6 +24,6 @@ class OrderItemView : RelativeLayout {
 
     fun bindData(data: Order) {
         order_item_seller_name.text = data.seller?.name
-        order_item_type.text = data.type
+        order_item_type.text = OrderObservable.INSTANCE.getOrderTypeInfo(data.type!!)
     }
 }

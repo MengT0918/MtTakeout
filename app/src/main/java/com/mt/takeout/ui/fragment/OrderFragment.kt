@@ -8,7 +8,7 @@ import com.mt.takeout.adapter.OrderAdapter
 import com.mt.takeout.base.BaseFragment
 import com.mt.takeout.model.bean.Order
 import com.mt.takeout.presenter.impl.OrderPresenterImpl
-import com.mt.takeout.utils.TakeoutApplication
+import com.mt.takeout.TakeoutApplication
 import com.mt.takeout.view.OrderView
 import kotlinx.android.synthetic.main.fragment_order.*
 import org.jetbrains.anko.support.v4.toast

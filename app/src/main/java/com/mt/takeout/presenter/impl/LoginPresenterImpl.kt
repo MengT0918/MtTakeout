@@ -9,7 +9,7 @@ import com.mt.takeout.model.bean.User
 import com.mt.takeout.model.dao.UserOpenHelper
 import com.mt.takeout.presenter.interf.LoginPresenter
 import com.mt.takeout.ui.activity.LoginActivity
-import com.mt.takeout.utils.TakeoutApplication
+import com.mt.takeout.TakeoutApplication
 import com.mt.takeout.utils.ThreadUtil
 import java.sql.Savepoint
 

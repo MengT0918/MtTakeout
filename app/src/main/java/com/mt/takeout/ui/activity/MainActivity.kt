@@ -19,7 +19,7 @@ class MainActivity : BaseActivity() {
 
     override fun initData() {
         mChildCount = mBottom.childCount
-        initSelectState(0)
+        initSelectState()
     }
 
     override fun initListener() {
@@ -61,7 +61,7 @@ class MainActivity : BaseActivity() {
         return if (resourceId != 0) res.getDimensionPixelSize(resourceId) else 0
     }
 
-    private fun initSelectState(index: Int) {
+    private fun initSelectState() {
         mBottom.getChildAt(0).isSelected = true
     }
 

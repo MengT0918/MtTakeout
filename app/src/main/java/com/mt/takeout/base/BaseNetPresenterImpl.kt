@@ -6,16 +6,18 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 abstract class BaseNetPresenterImpl() {
-    private val HOST = "http://192.168.0.100:8080"
+    private val HOST = "http://192.168.0.103:8080"
     protected val mTakeoutService: TakeoutService
 
     init {
         val retrofit = Retrofit.Builder()
             .baseUrl("$HOST/TakeoutService/")
             .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
             .build()
         mTakeoutService = retrofit.create<TakeoutService>(TakeoutService::class.java)
     }

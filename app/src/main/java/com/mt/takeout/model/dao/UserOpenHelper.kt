@@ -25,6 +25,5 @@ class UserOpenHelper(private val context: Context) :
         oldVersion: Int,
         newVersion: Int
     ) {
-        TODO("Not yet implemented")
     }
 }

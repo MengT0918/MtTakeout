@@ -93,11 +93,12 @@ class LoginActivity : BaseActivity(), LoginView {
         login_verify.onClick {
             val phone = login_user_phone.text.toString().trim()
             val code = login_user_code_et.text.toString().trim()
-            if (SMSUtil.judgePhoneNums(this@LoginActivity, phone) && code.isNotEmpty()) {
+            /*if (SMSUtil.judgePhoneNums(this@LoginActivity, phone) && code.isNotEmpty()) {
                 SMSSDK.submitVerificationCode("86", phone, code)
             } else {
                 toast("登陆失败")
-            }
+            }*/
+            mPresenter.loginByPhone(phone)
         }
     }
 

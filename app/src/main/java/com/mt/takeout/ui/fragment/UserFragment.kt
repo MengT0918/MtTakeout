@@ -1,11 +1,10 @@
 package com.mt.takeout.ui.fragment
 
 import android.view.View
-import android.widget.TextView
 import com.mt.takeout.R
 import com.mt.takeout.base.BaseFragment
 import com.mt.takeout.ui.activity.LoginActivity
-import com.mt.takeout.utils.TakeoutApplication
+import com.mt.takeout.TakeoutApplication
 import kotlinx.android.synthetic.main.fragment_user.*
 import org.jetbrains.anko.sdk27.coroutines.onClick
 import org.jetbrains.anko.support.v4.startActivity
