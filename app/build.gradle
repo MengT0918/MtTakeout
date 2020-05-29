@@ -5,13 +5,13 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'com.mob.sdk'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
     buildToolsVersion "29.0.3"
 
     defaultConfig {
         applicationId "com.mt.takeout"
-        minSdkVersion 19
-        targetSdkVersion 28
+        minSdkVersion 23
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -72,4 +72,11 @@ dependencies {
     implementation 'io.reactivex:rxjava:1.3.0'
     implementation 'io.reactivex:rxandroid:1.2.1'
     implementation 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
+    //底部滑入控件 BottomSheetLayout
+    implementation 'com.flipboard:bottomsheet-core:1.5.3'
+    implementation 'com.flipboard:bottomsheet-commons:1.5.3' // optional
+    //viewpager指示器
+    implementation 'com.android.support:design:29.0.2'
+    //粘性标题的ListView视图，和RecycleView一起组成商家商品分栏效果
+    implementation 'se.emilsjolander:stickylistheaders:2.7.0'
 }

@@ -17,10 +17,12 @@ class HomeAdapter : RecyclerView.Adapter<HomeAdapter.HomeHolder>() {
 
     class HomeHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
-    fun updateData(list: List<HomeSeller>) {
+    fun updateData(list: List<HomeSeller>?) {
         mDatas.clear()
-        mDatas.addAll(list)
-        notifyDataSetChanged()
+        list?.let {
+            mDatas.addAll(it)
+            notifyDataSetChanged()
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeHolder {
@@ -38,8 +40,23 @@ class HomeAdapter : RecyclerView.Adapter<HomeAdapter.HomeHolder>() {
     override fun onBindViewHolder(holder: HomeHolder, position: Int) {
         when (getItemViewType(position)) {
             TYPE_TITLE -> (holder.itemView as HomeTitleItemView).bindData()
-            TYPE_SELLER -> (holder.itemView as HomeSellerItemView).bindData(mDatas[position - 1])
+            TYPE_SELLER -> {
+                val itemView = holder.itemView as HomeSellerItemView
+                val data = mDatas[position - 1]
+                itemView.bindData(data)
+                itemView.setOnClickListener {
+                    listener?.let {
+                        it(data)
+                    }
+                }
+            }
         }
+    }
+
+    private var listener: ((homeHeller: HomeSeller) -> Unit)? = null
+
+    fun setListener(listener: ((homeHeller: HomeSeller) -> Unit)) {
+        this.listener = listener
     }
 
     override fun getItemViewType(position: Int): Int {

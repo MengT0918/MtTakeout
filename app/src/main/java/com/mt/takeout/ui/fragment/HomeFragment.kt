@@ -11,9 +11,11 @@ import com.mt.takeout.dagger2.component.DaggerHomeFragmentComponent
 import com.mt.takeout.dagger2.module.HomeFragmentModule
 import com.mt.takeout.model.bean.HomeSeller
 import com.mt.takeout.presenter.impl.HomePresenterImpl
+import com.mt.takeout.ui.activity.BusinessActivity
 import com.mt.takeout.view.HomeView
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.item_home_title.*
+import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
 import java.util.ArrayList
 import javax.inject.Inject
@@ -49,6 +51,10 @@ class HomeFragment : BaseFragment(), HomeView {
                 home_title_container.setBackgroundColor(Color.argb(alpha, 0x31, 0x90, 0xE8))
             }
         })
+
+        mAdapter.setListener {
+            startActivity<BusinessActivity>()
+        }
     }
 
     override fun onError(msg: String) {

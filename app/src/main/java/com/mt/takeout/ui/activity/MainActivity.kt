@@ -63,6 +63,7 @@ class MainActivity : BaseActivity() {
 
     private fun initSelectState() {
         mBottom.getChildAt(0).isSelected = true
+        supportFragmentManager.beginTransaction().replace(R.id.main_fl, fragments[0]).commit()
     }
 
     private fun changeSelectState(index: Int) {

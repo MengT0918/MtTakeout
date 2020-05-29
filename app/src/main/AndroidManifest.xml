@@ -54,6 +54,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.activity.LoginActivity"/>
+        <activity android:name=".ui.activity.BusinessActivity"/>
 
         <!-- Required SDK 核心功能-->
         <!-- 可配置 android:process 参数将 PushService 放在其他进程中 -->

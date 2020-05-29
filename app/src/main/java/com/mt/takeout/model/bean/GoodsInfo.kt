@@ -20,6 +20,10 @@ class GoodsInfo {
     //原价
     var oldPrice  = 0
     var sellerId = 0
+    //商品属于哪一个类别的Id和类别名称
+    var typeId = 0
+    var typeName = ""
+    var count = 0
 
     constructor() : super() {}
     constructor(
